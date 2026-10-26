@@ -317,11 +317,6 @@
             <option value="rating">⭐ Customer Rating</option>
           </select>
         </div>
-
-        <!-- Auto Add Product from Image Button -->
-        <button type="button" class="btn btn-outline btn-sm" onclick="openProductUploadModal()" title="Auto-detect product from filename">
-          <i class="fas fa-magic"></i> Auto-Add from Image
-        </button>
       </div>
 
       <!-- Category Filter Pills -->
@@ -840,83 +835,6 @@
           Clear Shopping Bag
         </button>
       </div>
-    </div>
-  </div>
-
-  <!-- Auto-Add Product from Image Modal -->
-  <div class="modal-backdrop" id="uploadProductModal">
-    <div class="quickview-card" style="max-width: 650px; grid-template-columns: 1fr; padding: 28px;">
-      <button class="modal-close-btn" onclick="closeProductUploadModal()">&times;</button>
-      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
-        <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--gold-100); color: var(--gold-600); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
-          <i class="fas fa-magic"></i>
-        </div>
-        <div>
-          <h3 style="font-size: 1.4rem; margin: 0;">Auto-Add Product from Image</h3>
-          <p style="font-size: 0.78rem; color: var(--text-muted); margin: 0;">Upload an image file with name, price &amp; category in the filename!</p>
-        </div>
-      </div>
-
-      <div style="background: var(--gold-100); border: 1px dashed var(--gold-400); border-radius: var(--radius-sm); padding: 12px 16px; margin: 14px 0 18px; font-size: 0.8rem; color: #5C470E;">
-        <strong>Naming Format Examples:</strong><br>
-        • <code>Handmade Bracelets_Rose Pearl Bracelet_399.jpg</code><br>
-        • <code>Beaded Bracelets - Pink Daisy Bracelet - 450.jpg</code><br>
-        • <code>Baroque Pearl Necklace - 549 - Pendant Chains.jpg</code>
-      </div>
-
-      <!-- Drag & Drop Zone -->
-      <div id="dropZone" class="upload-dropzone" onclick="document.getElementById('productImageInput').click()">
-        <input type="file" id="productImageInput" accept="image/*" style="display: none;" onchange="handleProductFileSelect(event)">
-        <div id="dropZoneContent">
-          <i class="fas fa-cloud-upload-alt" style="font-size: 2.2rem; color: var(--blush-400); margin-bottom: 8px;"></i>
-          <p style="font-size: 0.9rem; font-weight: 600; color: var(--text-primary); margin: 0;">Click or Drag &amp; Drop Product Photo Here</p>
-          <span style="font-size: 0.75rem; color: var(--text-muted);">PNG, JPG, WEBP accepted</span>
-        </div>
-        <img id="uploadPreviewImg" style="display: none; max-height: 160px; margin: 0 auto; border-radius: 8px; object-fit: contain;">
-      </div>
-
-      <!-- Auto-Detected Form Fields -->
-      <form id="autoAddProductForm" onsubmit="submitAutoAddProduct(event)">
-        <div class="form-group" style="margin-bottom: 14px;">
-          <label class="form-label">Product Name <span class="required">*</span></label>
-          <input type="text" id="autoProdName" class="form-control" placeholder="Auto-detected from filename" required>
-        </div>
-
-        <div class="form-grid-2">
-          <div class="form-group" style="margin-bottom: 14px;">
-            <label class="form-label">Category <span class="required">*</span></label>
-            <select id="autoProdCategory" class="form-control" required>
-              <option value="Handmade Bracelets">Handmade Bracelets</option>
-              <option value="Beaded Bracelets">Beaded Bracelets</option>
-              <option value="Friendship Bracelets">Friendship Bracelets</option>
-              <option value="Handmade Chains">Handmade Chains</option>
-              <option value="Necklaces">Necklaces</option>
-              <option value="Pendant Chains">Pendant Chains</option>
-              <option value="Customized Name Jewellery">Customized Name Jewellery</option>
-              <option value="Bracelet and Chain Gift Sets">Bracelet and Chain Gift Sets</option>
-            </select>
-          </div>
-
-          <div class="form-group" style="margin-bottom: 14px;">
-            <label class="form-label">Price in ₹ <span class="required">*</span></label>
-            <input type="number" id="autoProdPrice" class="form-control" placeholder="e.g. 399" min="1" required>
-          </div>
-        </div>
-
-        <div class="form-group" style="margin-bottom: 20px;">
-          <label class="form-label">Available Colors (Comma separated)</label>
-          <input type="text" id="autoProdColors" class="form-control" value="18K Gold Finish, Classic Pearl, Pastel Pink">
-        </div>
-
-        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-          <button type="submit" class="btn btn-primary" style="flex: 1 1 200px;">
-            <i class="fas fa-check-circle"></i> Add to Website Catalogue
-          </button>
-          <button type="button" class="btn btn-outline" onclick="downloadUpdatedProductsJS()" title="Export updated products.js file">
-            <i class="fas fa-download"></i> Export products.js
-          </button>
-        </div>
-      </form>
     </div>
   </div>
 
