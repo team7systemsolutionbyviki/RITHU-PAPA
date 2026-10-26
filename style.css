@@ -85,6 +85,8 @@ html {
   scroll-behavior: smooth;
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
@@ -97,6 +99,8 @@ body {
   background-attachment: fixed;
   line-height: 1.6;
   overflow-x: hidden;
+  max-width: 100%;
+  position: relative;
 }
 
 img {
@@ -283,6 +287,7 @@ h1, h2, h3, h4, .brand-font {
   text-transform: uppercase;
   background: linear-gradient(135deg, #3C1E26 0%, #753344 60%, #C59B27 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -331,6 +336,31 @@ h1, h2, h3, h4, .brand-font {
 .nav-link:hover::after,
 .nav-link.active::after {
   width: 100%;
+}
+
+.nav-link.nav-link-app {
+  background: rgba(61, 220, 132, 0.15);
+  border: 1px solid rgba(61, 220, 132, 0.4);
+  color: #0E8045;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all var(--transition-fast);
+}
+
+.nav-link.nav-link-app::after {
+  display: none;
+}
+
+.nav-link.nav-link-app:hover {
+  background: #1E8E3E;
+  color: #FFF;
+  border-color: #1E8E3E;
+  transform: translateY(-1px);
 }
 
 /* Header Actions */
@@ -469,6 +499,7 @@ h1, h2, h3, h4, .brand-font {
   display: inline-block;
   background: var(--gold-gradient);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   position: relative;
 }
@@ -551,6 +582,22 @@ h1, h2, h3, h4, .brand-font {
   background: var(--blush-50);
   border-color: var(--blush-400);
   transform: translateY(-2px);
+}
+
+.btn-app {
+  background: linear-gradient(135deg, #1E8E3E 0%, #137333 100%);
+  color: #FFF;
+  box-shadow: 0 4px 14px rgba(30, 142, 62, 0.35);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-app:hover {
+  background: linear-gradient(135deg, #25A549 0%, #1A803B 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(30, 142, 62, 0.45);
+  color: #FFF;
 }
 
 .btn-sm {
@@ -1792,6 +1839,16 @@ textarea.form-control {
   color: #EA4335;
 }
 
+.social-btn.app-apk {
+  border-color: rgba(61, 220, 132, 0.4);
+}
+
+.social-btn.app-apk:hover {
+  background: rgba(61, 220, 132, 0.12);
+  border-color: #1E8E3E;
+  color: #0E8045;
+}
+
 /* --------------------------------------------------------------------------
    Footer
    -------------------------------------------------------------------------- */
@@ -1813,6 +1870,7 @@ textarea.form-control {
   color: #FFF;
   background: linear-gradient(135deg, #FFFFFF 0%, #F5D77F 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 1.65rem;
   margin-bottom: 8px;
@@ -2392,12 +2450,211 @@ textarea.form-control {
 }
 
 /* --------------------------------------------------------------------------
-   Responsive Media Queries
+   App Download Banner Section
+   -------------------------------------------------------------------------- */
+.app-download-section {
+  padding: 60px 0;
+}
+
+.app-banner-card {
+  background: linear-gradient(135deg, #2E1B22 0%, #4A2430 50%, #201719 100%);
+  border-radius: var(--radius-lg);
+  padding: 48px;
+  color: #FFF;
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: 40px;
+  align-items: center;
+  box-shadow: var(--shadow-lg);
+  border: 1.5px solid rgba(245, 215, 127, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+.app-banner-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.18) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.app-banner-title {
+  color: #FFF;
+  font-size: 2.25rem;
+  line-height: 1.25;
+  margin: 12px 0 14px;
+}
+
+.app-banner-desc {
+  color: #E2D4D8;
+  font-size: 0.98rem;
+  line-height: 1.65;
+  margin-bottom: 24px;
+  max-width: 540px;
+}
+
+.app-banner-features {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.app-feature-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  color: #F7E4E9;
+}
+
+.app-feature-item i {
+  color: #3DDC84;
+}
+
+.app-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-app-download {
+  background: linear-gradient(135deg, #3DDC84 0%, #1E8E3E 100%);
+  color: #062B10;
+  font-weight: 700;
+  padding: 14px 26px;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 8px 24px rgba(61, 220, 132, 0.35);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.btn-app-download:hover {
+  background: linear-gradient(135deg, #4AF294 0%, #25A84B 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(61, 220, 132, 0.5);
+  color: #031B0A;
+}
+
+.btn-app-download i {
+  font-size: 1.9rem;
+  color: #062B10;
+}
+
+.btn-app-download .btn-subtext {
+  display: block;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.85;
+  font-weight: 600;
+}
+
+.btn-app-download .btn-maintext {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.apk-badge-info {
+  font-size: 0.82rem;
+  color: #D4C3C8;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.app-phone-mockup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-phone-screen {
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(245, 215, 127, 0.4);
+  border-radius: 28px;
+  padding: 30px 22px;
+  text-align: center;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  width: 100%;
+  max-width: 270px;
+}
+
+.app-mockup-logo {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 3px solid #D4AF37;
+  margin: 0 auto 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+.app-phone-screen h4 {
+  font-size: 1.15rem;
+  color: #FFF;
+  margin-bottom: 4px;
+}
+
+.app-phone-screen p {
+  font-size: 0.78rem;
+  color: #D4C3C8;
+  margin-bottom: 14px;
+}
+
+.app-screen-badge {
+  display: inline-block;
+  background: rgba(61, 220, 132, 0.2);
+  color: #69F0AE;
+  border: 1px solid rgba(61, 220, 132, 0.4);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.app-screen-btn {
+  background: var(--gold-gradient);
+  color: #261D05;
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 8px 18px;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: var(--shadow-gold);
+  transition: all var(--transition-fast);
+}
+
+.app-screen-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.5);
+  color: #000;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Media Queries & Mobile System
    -------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
   .hero-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 36px;
   }
 
   .hero-visual-card {
@@ -2407,7 +2664,7 @@ textarea.form-control {
 
   .about-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 36px;
   }
 
   .about-image-collage {
@@ -2431,45 +2688,120 @@ textarea.form-control {
     grid-template-columns: 1fr 1fr;
     gap: 32px;
   }
+
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 20px;
+  }
 }
 
 @media (max-width: 768px) {
   :root {
-    --header-height: 70px;
+    --header-height: 64px;
+  }
+
+  /* Prevent any mobile side-scrolling / overflow */
+  html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+  }
+
+  .container {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  /* Sleek, Single-line Compact Announcement Bar */
+  .announcement-bar {
+    padding: 6px 10px;
+    font-size: 0.74rem;
+  }
+
+  .announcement-content {
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .announcement-item:first-child {
+    display: none; /* Hide generic slogan on mobile to keep bar super clean */
+  }
+
+  /* Header Optimization */
+  .header-inner {
+    height: 64px;
+    gap: 8px;
+  }
+
+  .site-logo {
+    gap: 8px;
   }
 
   .brand-logo-img {
-    width: 44px;
-    height: 44px;
+    width: 38px;
+    height: 38px;
   }
 
-  .about-logo-badge {
-    width: 76px;
-    height: 76px;
-    top: -12px;
-    left: -12px;
+  .brand-title {
+    font-size: 1.15rem;
+    letter-spacing: 0.04em;
   }
 
-  .hero-title {
-    font-size: 2.35rem;
+  .brand-tagline {
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
   }
 
-  .section-title {
-    font-size: 1.85rem;
+  .header-actions {
+    gap: 6px;
   }
 
+  .header-icon-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 0.9rem;
+  }
+
+  .header-wa-btn {
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    justify-content: center;
+    border-radius: 50%;
+  }
+
+  .header-wa-btn span {
+    display: none;
+  }
+
+  .header-wa-btn i {
+    font-size: 1.15rem;
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+    width: 38px;
+    height: 38px;
+  }
+
+  /* Mobile Slide-down Navigation */
   .nav-links {
     position: fixed;
     top: var(--header-height);
     left: 0;
     width: 100%;
-    background: #FFF;
-    border-bottom: 1px solid var(--border-blush);
+    background: rgba(255, 253, 249, 0.98);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1.5px solid var(--border-blush);
     flex-direction: column;
-    padding: 24px;
-    gap: 18px;
-    box-shadow: var(--shadow-md);
-    transform: translateY(-120%);
+    padding: 20px 24px;
+    gap: 16px;
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-130%);
     transition: transform var(--transition-smooth);
     z-index: 99;
   }
@@ -2478,80 +2810,579 @@ textarea.form-control {
     transform: translateY(0);
   }
 
-  .mobile-menu-toggle {
-    display: flex;
+  .nav-link {
+    font-size: 1.05rem;
+    padding: 8px 0;
+    border-bottom: 1px dashed rgba(235, 124, 153, 0.15);
+    width: 100%;
   }
 
-  .header-wa-btn span {
+  /* Hero Section */
+  .hero-section {
+    padding: 28px 0 36px;
+  }
+
+  .hero-badge {
+    font-size: 0.74rem;
+    padding: 5px 12px;
+    margin-bottom: 14px;
+  }
+
+  .hero-title {
+    font-size: 1.85rem;
+    line-height: 1.22;
+    margin-bottom: 12px;
+  }
+
+  .hero-subtitle {
+    font-size: 0.88rem;
+    line-height: 1.55;
+    margin-bottom: 22px;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 24px;
+  }
+
+  .hero-cta-group .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 18px;
+    font-size: 0.92rem;
+  }
+
+  /* Hero Visual & Badges (Keep inside image frame on mobile, no horizontal overflow) */
+  .hero-visual-card {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+  }
+
+  .hero-image-frame {
+    aspect-ratio: 4 / 3;
+    border-width: 2px;
+  }
+
+  .hero-float-card.top-right {
+    top: 10px;
+    right: 10px;
+    padding: 6px 10px;
+    transform: none;
+    animation: none;
+  }
+
+  .hero-float-card.bottom-left {
+    bottom: 10px;
+    left: 10px;
+    padding: 6px 10px;
+    transform: none;
+    animation: none;
+  }
+
+  .float-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 0.8rem;
+  }
+
+  .float-info h4 {
+    font-size: 0.72rem;
+  }
+
+  .float-info p {
+    font-size: 0.62rem;
+  }
+
+  .hero-trust-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding-top: 18px;
+  }
+
+  .trust-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 6px;
+  }
+
+  .trust-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 0.85rem;
+    margin: 0 auto;
+  }
+
+  .trust-text strong {
+    font-size: 0.75rem;
+  }
+
+  .trust-text span {
+    font-size: 0.68rem;
     display: none;
   }
 
-  .header-wa-btn {
-    padding: 10px;
+  /* Section Headings */
+  .section {
+    padding: 44px 0;
+  }
+
+  .section-header {
+    margin-bottom: 26px;
+  }
+
+  .section-tag {
+    font-size: 0.72rem;
+    padding: 4px 10px;
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-size: 1.65rem;
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+
+  .section-desc {
+    font-size: 0.88rem;
+  }
+
+  /* Categories Grid: Sleek 2-column mobile layout */
+  .categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .category-card {
+    padding: 12px 10px;
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .category-icon-box {
+    width: 44px;
+    height: 44px;
+    font-size: 1.15rem;
+  }
+
+  .category-text h3 {
+    font-size: 0.82rem;
+    line-height: 1.25;
+  }
+
+  .category-text span {
+    font-size: 0.7rem;
+  }
+
+  /* Catalog Toolbar */
+  .catalog-toolbar {
+    padding: 12px;
+    gap: 12px;
+    margin-bottom: 18px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-box-wrap {
+    width: 100%;
+    flex: 1 1 auto;
+  }
+
+  .search-input {
+    font-size: 0.86rem;
+    padding: 10px 36px 10px 38px;
+  }
+
+  .sort-box-wrap {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .sort-select {
+    width: 100%;
+    font-size: 0.84rem;
+    padding: 8px 32px 8px 14px;
+  }
+
+  /* Filter Pills: Horizontal scroll bar on mobile */
+  .filter-pills-row {
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+    gap: 8px;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+  }
+
+  .filter-pill {
+    padding: 6px 14px;
+    font-size: 0.78rem;
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
+
+  /* PRODUCTS GRID: Luxury 2-Column Mobile Boutique Layout */
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .product-card {
+    border-radius: var(--radius-sm);
+  }
+
+  .product-card:hover {
+    transform: none; /* Disable hover tilt on touch screens */
+  }
+
+  .card-media-wrap {
+    aspect-ratio: 1 / 1;
+  }
+
+  .card-badge {
+    top: 6px;
+    left: 6px;
+    font-size: 0.6rem;
+    padding: 2px 6px;
+  }
+
+  .card-quickview-btn {
+    display: none; /* Hide hover button on mobile; users tap card */
+  }
+
+  .card-body {
+    padding: 10px 8px;
+  }
+
+  .card-category {
+    font-size: 0.64rem;
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .card-title {
+    font-size: 0.84rem;
+    line-height: 1.25;
+    margin-bottom: 4px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 2.15em;
+  }
+
+  .card-rating {
+    font-size: 0.68rem;
+    margin-bottom: 6px;
+    gap: 3px;
+  }
+
+  .card-rating .stars {
+    font-size: 0.7rem;
+  }
+
+  .card-rating span:last-child {
+    display: none; /* Hide 'In stock' text on small card to prevent overlap */
+  }
+
+  .card-colors-row {
+    display: none; /* Keep mobile card clean and uniform */
+  }
+
+  .card-price-row {
+    gap: 4px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+    align-items: baseline;
+  }
+
+  .current-price {
+    font-size: 1.02rem;
+  }
+
+  .original-price {
+    font-size: 0.74rem;
+  }
+
+  .discount-tag {
+    font-size: 0.6rem;
+    padding: 1px 4px;
+  }
+
+  .card-qty-row {
+    display: none; /* Default quantity 1 on card; full stepper in Quick View & Cart */
+  }
+
+  .card-btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .btn-card-whatsapp {
+    padding: 8px 6px;
+    font-size: 0.74rem;
+    width: 100%;
+    justify-content: center;
+    border-radius: 6px;
+  }
+
+  .btn-add-cart {
+    padding: 6px 6px;
+    font-size: 0.7rem;
+    width: 100%;
+    justify-content: center;
+    border-radius: 6px;
+  }
+
+  /* Custom Order Form */
+  .custom-form-container {
+    padding: 20px 14px;
+    border-radius: var(--radius-md);
+  }
+
+  .custom-info-card {
+    padding: 20px 16px;
+    border-radius: var(--radius-md);
   }
 
   .form-grid-2 {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
 
-  .quickview-card {
+  .form-control {
+    font-size: 0.95rem; /* 16px font prevents iOS mobile Safari auto-zoom */
+    padding: 10px 14px;
+  }
+
+  .reference-upload-notice {
+    padding: 10px 12px;
+    font-size: 0.78rem;
+  }
+
+  /* About Section Collages */
+  .about-image-collage {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+  }
+
+  .about-logo-badge {
+    width: 58px;
+    height: 58px;
+    top: 10px;
+    left: 10px;
+  }
+
+  .about-experience-badge {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    padding: 8px 12px;
+  }
+
+  .about-experience-badge .years {
+    font-size: 1.35rem;
+  }
+
+  .about-experience-badge .exp-text {
+    font-size: 0.62rem;
+  }
+
+  .about-content h2 {
+    font-size: 1.8rem;
+    line-height: 1.25;
+  }
+
+  .about-features-grid {
     grid-template-columns: 1fr;
-    max-height: 85vh;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  /* App Download Banner Mobile */
+  .app-download-section {
+    padding: 36px 0;
+  }
+
+  .app-banner-card {
+    grid-template-columns: 1fr;
+    padding: 28px 16px;
+    gap: 28px;
+    text-align: center;
+  }
+
+  .app-banner-title {
+    font-size: 1.6rem;
+  }
+
+  .app-banner-desc {
+    font-size: 0.88rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .app-banner-features {
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .app-feature-item {
+    font-size: 0.76rem;
+    padding: 6px 10px;
+  }
+
+  .app-cta-group {
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-app-download {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 20px;
+  }
+
+  /* Reviews & Testimonials */
+  .reviews-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .review-card {
+    padding: 20px 16px;
+  }
+
+  /* Contact Section */
+  .contact-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .contact-main-card,
+  .contact-side-card {
+    padding: 20px 16px;
+    border-radius: var(--radius-md);
+  }
+
+  /* Footer */
+  .site-footer {
+    padding: 40px 0 24px;
   }
 
   .footer-grid {
     grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+    padding-top: 18px;
+  }
+
+  .footer-developer-credit {
+    font-size: 0.75rem;
+    padding: 10px 12px;
+    line-height: 1.6;
+    word-break: break-word;
+  }
+
+  /* Shopping Cart Drawer */
+  .cart-drawer {
+    width: 100%;
+    max-width: 100vw;
+  }
+
+  .cart-header {
+    padding: 16px 18px;
+  }
+
+  .cart-items-container {
+    padding: 14px 16px;
+  }
+
+  .cart-footer {
+    padding: 16px 18px;
+  }
+
+  /* Quick View Modal */
+  .quickview-card {
+    grid-template-columns: 1fr;
+    max-height: 90vh;
+    border-radius: var(--radius-md);
+  }
+
+  .quickview-details-pane {
+    padding: 18px 16px;
+  }
+
+  /* Floating WhatsApp Button */
+  .floating-wa-btn {
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    justify-content: center;
+    border-radius: 50%;
+    bottom: 18px;
+    right: 18px;
   }
 
   .floating-wa-btn span {
     display: none;
   }
 
-  .floating-wa-btn {
-    width: 56px;
-    height: 56px;
-    padding: 0;
-    justify-content: center;
-    border-radius: 50%;
-    bottom: 20px;
-    right: 20px;
+  .floating-wa-icon {
+    font-size: 1.4rem;
   }
 
+  /* Toast Notification on Mobile */
   .toast-container {
-    left: 16px;
-    right: 16px;
-    bottom: 80px;
+    left: 12px;
+    right: 12px;
+    bottom: 76px;
   }
 
   .toast {
     min-width: unset;
     width: 100%;
+    padding: 10px 14px;
   }
 }
 
 @media (max-width: 480px) {
   .hero-title {
-    font-size: 1.95rem;
+    font-size: 1.65rem;
   }
 
-  .hero-cta-group {
-    flex-direction: column;
-    width: 100%;
+  .section-title {
+    font-size: 1.45rem;
   }
 
-  .hero-cta-group .btn {
-    width: 100%;
+  .brand-title {
+    font-size: 1.05rem;
   }
 
-  .catalog-toolbar {
-    padding: 14px;
+  .products-grid {
+    gap: 8px;
   }
 
-  .card-btn-group {
-    grid-template-columns: 1fr;
+  .card-body {
+    padding: 8px 6px;
   }
 
-  .custom-form-container {
-    padding: 24px 18px;
+  .current-price {
+    font-size: 0.96rem;
   }
 }
